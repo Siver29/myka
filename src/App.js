@@ -1,5 +1,6 @@
 import { BrowserRouter,Routes, Route } from 'react-router-dom';
 import './App.css';
+import Aside from './components/Aside.js'
 
 
 
@@ -8,13 +9,7 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path='/artist' element={<Artist/>}/>
-          <Route path='/podcast' element={<Podcast/>}/>
-          <Route path='/artist' element={<Artist/>}/>
-        </Routes>
-      </BrowserRouter>
+        <Aside />
     </div>
   );
 }
