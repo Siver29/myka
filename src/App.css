@@ -1,5 +1,8 @@
+
+html { box-sizing: border-box; height: 100%; font-size: 10px;margin: 0;padding: 0; } *, *::before, *::after { box-sizing: inherit; }
 .App {
   text-align: center;
+  background-color: #F7F8FB;
 }
 
 .App-logo {
@@ -36,3 +39,4 @@
     transform: rotate(360deg);
   }
 }
+

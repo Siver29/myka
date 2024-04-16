@@ -1,5 +1,15 @@
 import { BrowserRouter,Routes, Route } from 'react-router-dom';
 import './App.css';
+import data from './spotify_data.history.json'
+import Aside from './components/Aside.js'
+import Header from './components/Header.js';
+import getTotalPlays from './functions/KhaledFunctions.js'
+import getAllArtiests from './functions/MkFunctions.js'
+import Circle from './components/Circle.js';
+import Top100TableWrapper from "./components/Top100TableWrapper.js"
+
+
+console.log(getTotalPlays(data))
 import Ycard from './components/Ycard/Ycard';
 import Table3 from './components/Table3/Table3';
 import data from "./spotify_data.history.json"
@@ -35,22 +45,18 @@ function extractSongData(songName){
  return resultSong;
 }
 function App() {
-
   return (
     <div className="App">
-      {/* <BrowserRouter>
-        <Routes>
-          <Route path='/artist' element={<Artist/>}/>
-          <Route path='/podcast' element={<Podcast/>}/>
-          <Route path='/artist' element={<Artist/>}/>
-          <Route path='/artist' element={<Artist/>}/>
-        </Routes>
-      </BrowserRouter> */}
-      <Ycard />
-      <h1>hi: </h1>
-      
-      <Table3 data={extractPodcastData("The Misfits Podcast")} header={["Episode title","Episode status","Played","Date"]}/>
-      <Table3 data={extractSongData("Antidote")} header={["Album title","Episode Status","Played","Date"]}/>
+      <div className='container-fluid'>
+        <div className='row'>
+          <div className='col-2'>
+          <Aside />
+          </div>
+          <div className='col-10'>
+            <Header songs={getAllArtiests(data)}/>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

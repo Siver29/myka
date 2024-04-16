@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Jim+Nightshade&display=swap');
+.aside{
+    padding: 0;
+    margin-left: -12px;
+    width: 296px;
+    height: 100vh;
+    background: linear-gradient(120deg , #0CF0DE , #FC244C);
+}
+.logo{
+    margin-top: 20px;
+    width: 125px;
+    height: 125px;
+}
+ul{
+    margin-left: 30px;
+    text-align: justify;
+    list-style: none;
+    font-family: "Jim Nightshade", cursive;
+    font-size: 50px;
+    line-height: 100px;
+    color: white;
+}
+.active{
+    color: black;
+}
