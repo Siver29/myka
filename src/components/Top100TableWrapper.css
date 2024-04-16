@@ -1,0 +1,13 @@
+.dropRow{
+    background-color: #eee;
+    display: flex;
+    padding: 10px;
+    margin: 10px 0 0;
+    align-items: center;
+}
+.dropRow p {
+    margin: 0;
+}
+#dropdown-custom-1{
+    margin-left: 10px;
+}
