@@ -1,17 +1,29 @@
-import React from 'react'
+import React , { useState , useEffect} from 'react'
 import Select from 'react-select';
 import 'bootstrap/dist/css/bootstrap.css';
 import './Header.css';
-  const options = [
-    { value: 'apple', label: 'Apple' },
-    { value: 'banana', label: 'Banana' },
-    { value: 'orange', label: 'Orange' },
-  ];
-  
-  const Header = () => {
-    const handleChange = (selectedOption) => {
-      console.log(selectedOption);
+
+
+  const Header = (props) => {
+    const [options, setOptions] = useState([]);
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const addAllSongs = () => {
+      if (props.songs) {
+      const newOptions = props.songs.map(song => ({ label: song, value: song }));
+      setOptions(newOptions);
+      }
     };
+    useEffect(() => {
+      addAllSongs();
+    }, []);
+  
+
+      const handleChange = (selectedOption) => {
+        setSelectedOption(selectedOption);
+        
+      };
+
     const colourStyles = {
       option: (styles, { data, isDisabled, isFocused, isSelected }) => {
         return {
@@ -25,7 +37,6 @@ import './Header.css';
     <header className='container-fluid'>
       <div className='row'>
       <div className='col-6'>
-        
         <Select 
         placeholder="search for song"
         options={options}
