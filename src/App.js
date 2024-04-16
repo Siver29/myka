@@ -5,6 +5,7 @@ import Aside from './components/Aside.js'
 import Header from './components/Header.js';
 import getTotalPlays from './functions/KhaledFunctions.js'
 import getAllArtiests from './functions/MkFunctions.js'
+import Top100Table from './components/Top100Table.js'
 import Circle from './components/Circle.js';
 import Top100TableWrapper from "./components/Top100TableWrapper.js"
 
@@ -19,7 +20,16 @@ function App() {
           <Aside />
           </div>
           <div className='col-10'>
-            <Header songs={getAllArtiests(data)}/>
+            <div className='container-fluid'>
+              <div className='row'>
+                <div className='col-12'>
+                  <Header songs={getAllArtiests(data)}/>
+                </div>
+                <div className='col-12'>
+                  
+                </div>
+              </div>
+            </div>  
           </div>
         </div>
       </div>

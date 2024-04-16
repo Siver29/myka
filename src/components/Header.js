@@ -53,7 +53,9 @@ import './Header.css';
           </div>
           <div className='col-2'>
           <div className='userPhoto'>
-            <img src='./imgs/Rafael.png' />
+            <a href='./imgs/Rafael.png' target='_blank'>
+              <img src='./imgs/Rafael.png' />
+            </a>
           </div>
           </div>
         </div>
