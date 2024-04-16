@@ -3,6 +3,10 @@
     margin: 0;
     box-sizing: border-box;
 }
+.tableRow{
+        background-image: linear-gradient(to right, #0CF0DE , #FC244C);
+    color: white !important;
+}
 .Table3cs{
     background-image: linear-gradient(to right, #0CF0DE , #FC244C);
     color: white !important;

@@ -6,7 +6,7 @@ function Table3(props) {
     return (
         <Table striped bordered hover size="sm" >
             <thead >
-                <tr >
+                <tr className="tableRow">
                     <th className="Table3cs">Rank</th>
                     <th className="Table3cs">{props.header[0]}</th>
                     <th className="Table3cs">{props.header[1]}</th>
