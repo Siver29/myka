@@ -4,15 +4,31 @@ import Circle from "./components/Circle";
 import Top100TableWrapper from "./components/Top100TableWrapper";
 import data from "./spotify_data.history.json";
 import { useEffect, useState } from "react";
+import Aside from './components/Aside.js'
+import Header from './components/Header.js';
+import getTotalPlays from './functions/KhaledFunctions.js'
+import getAllArtiests from './functions/MkFunctions.js'
+import Top100Table from './components/Top100Table.js'
+import Ycard from './components/Ycard/Ycard';
+import Table3 from './components/Table3/Table3';
 
-// window.onSpotifyIframeApiReady = (IFrameAPI) => {
-//   const element = document.getElementById('embed-iframe');
-//   const options = {
-//       uri: 'spotify:episode:0r1RkE2mKsOEx5FNoHAzv4'
-//     };
-//   const callback = (EmbedController) => {};
-//   IFrameAPI.createController(element, options, callback);
-// };
+
+
+function extractPodcastData(podcastName){
+  let resultPodcast= []
+  data.map(song =>{
+   if(song.episode_show_name ==podcastName){
+     resultPodcast.push({
+       episodeName :song.episode_name,
+       episodeStatus:song.reason_end == "trackdone"? "finished": "not finished",
+       played:song.ms_played,
+       date:song.ts
+     });
+   }
+  })
+  console.log(resultPodcast);
+ return resultPodcast;
+}
 
 function highestSeason(data) {
   const seasons = {
@@ -57,7 +73,7 @@ function highestSeason(data) {
   ];
 }
 
-function getTop100() {
+function getTop100(Obj) {
   const dataArray = Object.entries(Obj);
 
   dataArray.sort((a, b) => b[1] - a[1]);
@@ -292,32 +308,50 @@ function App() {
     //     </Routes>
     //   </BrowserRouter>
     // </div>
-    <>
-      
-      <iframe
-        style={{ borderRadius: "12px" }}
-        src={`https://open.spotify.com/embed/track/${id}?utm_source=generator`}
-        width="100%"
-        height="352"
-        frameBorder="0"
-        allowFullScreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy"
-      ></iframe>
-      <Circle
-        labels={["winter", "summer", "Spring", "Autumn"]}
-        data={highestSeason(data)}
-      />
-      <Top100TableWrapper
-        changeable={true}
-        extractAlbumData={extractAlbumData}
-        extractSongData={extractSongData}
-        extractArtistData={extractArtistData}
-        top100Albums={top100Albums}
-        top100Songs={top100Songs}
-        top100Artists={top100Artists}
-      />
-    </>
+    
+    <div className="App">
+      <div className='container-fluid'>
+        <div className='row'>
+          <div className='col-2'>
+          <Aside />
+          </div>
+          <div className='col-10'>
+            <div className='container-fluid'>
+              <div className='row'>
+                <div className='col-12'>
+                  <Header songs={getAllArtiests(data)}/>
+                </div>
+                <div className='col-12'>
+                <iframe
+                    style={{ borderRadius: "12px" }}
+                    src={`https://open.spotify.com/embed/track/${id}?utm_source=generator`}
+                    width="100%"
+                    height="352"
+                    frameBorder="0"
+                    allowFullScreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                  ></iframe>
+                  <Circle
+                    labels={["winter", "summer", "Spring", "Autumn"]}
+                    data={highestSeason(data)}
+                  />
+                  <Top100TableWrapper
+                    changeable={true}
+                    extractAlbumData={extractAlbumData}
+                    extractSongData={extractSongData}
+                    extractArtistData={extractArtistData}
+                    top100Albums={top100Albums}
+                    top100Songs={top100Songs}
+                    top100Artists={top100Artists}
+                  />
+                </div>
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

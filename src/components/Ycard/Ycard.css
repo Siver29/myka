@@ -1,0 +1,26 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: white;
+}
+.cardbox{
+    width: 10rem;
+    /* border: 1px black solid; */
+    padding:15px;
+    margin:10px 20px;
+    background-image: linear-gradient(to right, #0CF0DE , #FC244C);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.PropsTitle{
+    padding-bottom: 15px;
+    font-size: 14px;
+}
+.PropsValue{
+    padding-top: 15px;
+    padding-right: 15px;
+    font-size: 18px;
+}
