@@ -1,5 +1,6 @@
 import React from 'react'
 import './Aside.css'
+import { NavLink } from 'react-router-dom'
 
 function Aside() {
   return (
@@ -9,9 +10,9 @@ function Aside() {
           </div>
           <div>
               <ul>
-                  <li className='active'>Home</li>    
-                  <li>Artiests</li>    
-                  <li>Podcast</li>    
+                  <li><NavLink to='/'> Home</NavLink>    </li>
+                  <li><NavLink to='/artist'>Artiests</NavLink></li>    
+                  <li><NavLink to='/podcast'>Podcast</NavLink></li>    
               </ul>
           </div>
       </nav>

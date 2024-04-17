@@ -4,9 +4,9 @@ function Ycard(props) {
   return (
     <div>
       <div  style={{ }} className='cardbox'>
-        <div className='PropsTitle Header'>{props.title}title</div>
+        <div className='PropsTitle Header'>{props.title}</div>
           <div className='body'>
-            <div className='PropsValue value'>{props.vlaue}value</div>
+            <div className='PropsValue value'>{props.value}</div>
               {/* <Card.Text>
                 Some quick example text to build on the card title and make up the
                 bulk of the card's content.

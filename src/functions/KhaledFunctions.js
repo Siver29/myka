@@ -1,12 +1,12 @@
 import data from '../spotify_data.history.json' 
 
-    function getSongPlays(songName, data) {
+  function getSongPlays(songName, data) {
     const plays =
       data.filter(song => song.master_metadata_track_name == songName)
     return plays.length
   }
   
-  export default function getTotalPlays(data) {
+  export function getTotalPlays() {
     return data.length
   }
   
