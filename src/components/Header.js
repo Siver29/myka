@@ -2,6 +2,7 @@ import React , { useState , useEffect} from 'react'
 import Select from 'react-select';
 import 'bootstrap/dist/css/bootstrap.css';
 import './Header.css';
+import { Navigate } from 'react-router-dom';
 
 
   const Header = (props) => {
@@ -22,6 +23,7 @@ import './Header.css';
       const handleChange = (selectedOption) => {
         setSelectedOption(selectedOption);
         
+        
       };
 
     const colourStyles = {
@@ -29,7 +31,7 @@ import './Header.css';
         return {
           ...styles,
           backgroundColor: isFocused ? "#FC244C" : null,
-          color: "black"
+          color: isFocused ? "white": "black"
         };
       }
     };  

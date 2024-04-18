@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Jim+Nightshade&display=swap');
 .aside{
+    position: fixed;
+    width: 15%;
     padding: 0;
     margin-left: -12px;
-    width: 296px;
     height: 100vh;
     background: linear-gradient(120deg , #0CF0DE , #FC244C);
 }

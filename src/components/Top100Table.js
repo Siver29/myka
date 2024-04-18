@@ -14,7 +14,7 @@ function Top100Table(props) {
       <tbody>
         {props.data.map((item,index) => (
             <tr key={item.firstArgument}>
-              <td>#{index}</td>
+              <td>#{index+1}</td>
               <td>{item.firstArgument}</td>
               <td>{item.secondArgument}</td>
               <td>{item.thirdArgument}</td>

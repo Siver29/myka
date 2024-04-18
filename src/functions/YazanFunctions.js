@@ -12,6 +12,8 @@ function getTop100(Obj) {
   
     return top100Names;
   }
+  
+  export function top100Artists(since){
   console.log(top100Artists("since the beginning"))
   export function top100Artists(since){
     let obj = {};
@@ -31,7 +33,7 @@ function getTop100(Obj) {
       const currentDate = new Date();
       dateSince = new Date(currentDate.setMonth(currentDate.getMonth() - 6));
     }
-    else if(since = "last 4 weeks"){
+    else if(since == "last 4 weeks"){
       const currentDate = new Date();
       dateSince = new Date(currentDate.setDate(currentDate.getDate() - 28));
     }
@@ -74,7 +76,7 @@ function getTop100(Obj) {
     });
     return getTop100(obj)  
   }
-  function top100Albums(since){
+  export function top100Albums(since){
     let obj = {};
     let dateSince;
     if(since == "since the beginning"){
@@ -106,7 +108,7 @@ function getTop100(Obj) {
     });
     return getTop100(obj)  
   }
-  function extractArtistData(artistName){
+  export function extractArtistData(artistName){
     let totalPlays = data.filter(song => song.master_metadata_album_artist_name == artistName).length
     let totalSongs = []
     data.forEach(song => {
@@ -144,7 +146,7 @@ function getTop100(Obj) {
       fourthArgument: `${Math.trunc(timePlayed/1000)}s`
     }
   }
-  function extractAlbumData(album){
+ export function extractAlbumData(album){
     let artistName = data.find(song => song.master_metadata_album_album_name == album).master_metadata_album_artist_name
     let totalSongs = []
     data.map(song =>{
