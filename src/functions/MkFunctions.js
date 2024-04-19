@@ -40,12 +40,9 @@ import {extractSongData,top100Songs,getTop100} from './YazanFunctions.js'
       }else{
           Rank = "UnRanked"
       }
-      console.log(Rank)
       songDetailsArray.Rank =Rank
       
       return songDetailsArray 
   
   
   }
-  let ddd= songDetails('7empest')
-  console.log(ddd)

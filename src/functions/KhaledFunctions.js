@@ -1,6 +1,6 @@
-import data from '../spotify_data.history.json' 
+import data from '../spotify_data.history.json'
 
-  function getSongPlays(songName, data) {
+  function getSongPlays(songName) {
     const plays =
       data.filter(song => song.master_metadata_track_name == songName)
     return plays.length
@@ -11,21 +11,21 @@ import data from '../spotify_data.history.json'
   }
   
   
-  function getDiffrentTracks(data) {
+  function getDiffrentTracks() {
     let diffrentTracks = []
   
     diffrentTracks = data.map(song => song.master_metadata_track_name)
     return [...new Set(diffrentTracks)].length
   }
   
-  function getTotalTime(data) {
+  function getTotalTime() {
     let totalTime = 0;
   
     data.map(song => totalTime += song.ms_played)
   
     return totalTime
   }
-  function getTotalTimeNonSkipped(data) {
+  function getTotalTimeNonSkipped() {
     let totalTime = 0;
   
     data.map(song => { if (String(song.skipped) == "false") totalTime += song.ms_played })
@@ -33,7 +33,7 @@ import data from '../spotify_data.history.json'
     return totalTime
   }
   
-  function avgDailyTimeListening(data) {
+  function avgDailyTimeListening() {
     let dates = [];
     dates = data.map(song => song.ts.slice(0, 10))
   
@@ -66,7 +66,7 @@ import data from '../spotify_data.history.json'
     return maxHour
   }
   
-  function highestSeason(data) {
+  export function highestSeason() {
     const seasons = {
       winter: 0,
       summer: 0,
@@ -99,13 +99,13 @@ import data from '../spotify_data.history.json'
   
   }
   
-  function artistPrecentage(artistName, data) {
+  function artistPrecentage(artistName) {
     let artistPlayes = 0
     data.map(song => { if (song.master_metadata_album_artist_name == artistName) artistPlayes++ })
     return [(getTotalPlays(data) - artistPlayes), artistPlayes]
   }
   
-  function highestArtistSeason(artistName, data) {
+  export function highestArtistSeason(artistName) {
   
     const seasons = {
       winter: 0,
@@ -128,16 +128,6 @@ import data from '../spotify_data.history.json'
       }
     })
   
-    let maxSeason = -1;
-    let maxCount = 0;
-  
-    for (const season in seasons) {
-      if (seasons[season] > maxCount) {
-        maxCount = seasons[season];
-        maxSeason = season;
-      }
-    }
-    console.log(seasons);
-    return maxSeason
+    return seasons
   
   }

@@ -6,7 +6,7 @@ const CLIENT_ID = "5f76e87494884cb1ba1da0fadf1422e4";
 const CLIENT_SECRET = "84f01bc0a1514fb5b1731f5d906c9807";
 
 function SongPage() {
-    const [accessToken, setAccessToken] = useState("");
+  const [accessToken, setAccessToken] = useState("");
   const [id, setId] = useState("");
 
   let authParams = {
@@ -33,11 +33,10 @@ function SongPage() {
       fetch("https://accounts.spotify.com/api/token", authParams)
         .then((res) => res.json())
         .then((data) => setAccessToken(data.access_token));
-      console.log(data);
     }
     function getID() {
       fetch(
-        "https://api.spotify.com/v1/search?q=7empst&type=track",
+        "https://api.spotify.com/v1/search?q=jealousy, jealousy&type=track",
         reqParams
       )
         .then((res) => res.json())
@@ -45,7 +44,8 @@ function SongPage() {
     }
     if (accessToken == "")
      getToken();
-    else getID();
+    else
+     getID();
   }, [accessToken]);
   return (
     <div>
