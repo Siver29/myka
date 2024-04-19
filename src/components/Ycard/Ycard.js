@@ -2,7 +2,7 @@ import React from 'react'
 import './Ycard.css'
 function Ycard(props) {
   return (
-    <div>
+    <div className='cardd'>
       <div  style={{ }} className='cardbox'>
         <div className='PropsTitle Header'>{props.title}</div>
           <div className='body'>

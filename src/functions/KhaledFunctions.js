@@ -11,19 +11,19 @@ import data from '../spotify_data.history.json'
   }
   
   
-  function getDiffrentTracks() {
+  export function getDiffrentTracks() {
     let diffrentTracks = []
   
     diffrentTracks = data.map(song => song.master_metadata_track_name)
     return [...new Set(diffrentTracks)].length
   }
   
-  function getTotalTime() {
+ export function getTotalTime() {
     let totalTime = 0;
   
     data.map(song => totalTime += song.ms_played)
   
-    return totalTime
+    return (`${Math.trunc(totalTime/6000)} m`)
   }
   function getTotalTimeNonSkipped() {
     let totalTime = 0;
@@ -33,16 +33,16 @@ import data from '../spotify_data.history.json'
     return totalTime
   }
   
-  function avgDailyTimeListening() {
+  export function avgDailyTimeListening() {
     let dates = [];
     dates = data.map(song => song.ts.slice(0, 10))
   
     let avg = getTotalTimeNonSkipped(data)
   
-    return Math.trunc(avg / [...new Set(dates)].length)
+    return `${Math.trunc((avg / [...new Set(dates)].length)/6000)} m`
   }
   
-  function highestHour(data) {
+  export function highestHour() {
   
   
     const hourCounts = {};
@@ -66,7 +66,7 @@ import data from '../spotify_data.history.json'
     return maxHour
   }
   
-  export function highestSeason() {
+ export function highestSeason() {
     const seasons = {
       winter: 0,
       summer: 0,
@@ -95,7 +95,7 @@ import data from '../spotify_data.history.json'
         maxSeason = season;
       }
     }
-    return maxSeason
+    return seasons
   
   }
   
