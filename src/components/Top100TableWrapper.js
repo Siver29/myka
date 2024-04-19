@@ -7,7 +7,7 @@ import Top100Table from './Top100Table';
 
 function Top100TableWrapper(props) {
     const [header,setHeader] = useState(["Song name","Artiest name","Total plays","Time played"])
-    const[data,setData] = useState(props.top100Songs("since the beginning").map(artist => props.extractSongData(artist)))
+    const[data,setData] = useState(props.top100Songs("since the beginning").map(song => props.extractSongData(song)))
     const [activeKey, setActiveKey] = useState('Song');
     const [since, setSince] = useState("since the beginning");
     function handleSelect(eventKey,since){
