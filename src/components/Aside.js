@@ -6,7 +6,7 @@ function Aside() {
   return (
       <nav className='aside'>
           <div>
-              <img src='/imgs/logo.png' className='logo'/>
+              <img src='/imgs/logo (2).png' className='logo'/>
           </div>
           <div>
               <ul>

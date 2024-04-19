@@ -22,26 +22,25 @@ if(type == "artist")
 
   
   
-setArtist(type)
   return (
     <>
-      <h1>{artist}</h1>
+      <h1>{type}</h1>
       <div className='Cards'>
-        <Ycard title="Plays" value={extractArtistData(artist).secondArgument}/>
-        <Ycard title="Songs" value={extractArtistData(artist).thirdArgument}/>
-        <Ycard title="Time Listened" value={extractArtistData(artist).fourthArgument}/>
-        <Ycard title="Rank" value={`#${artistRank(artist)}`}/>
+        <Ycard title="Plays" value={extractArtistData(type).secondArgument}/>
+        <Ycard title="Songs" value={extractArtistData(type).thirdArgument}/>
+        <Ycard title="Time Listened" value={extractArtistData(type).fourthArgument}/>
+        <Ycard title="Rank" value={`#${artistRank(type)}`}/>
       </div>
       <div className='Circles'>
         <Circle
     labels={["Winter", "Summer", "Spring", "Autumn"]}
     
-    data={Object.values(highestArtistSeason(artist))}
+    data={Object.values(highestArtistSeason(type))}
       />
         <ArtistCircle
-    labels={[artist, "Other"]}
+    labels={[type, "Other"]}
     
-    data={artistPercentage(artist)}
+    data={artistPercentage(type)}
       />
       </div>
       <Top100TableWrapper
@@ -50,7 +49,7 @@ setArtist(type)
     extractSongData={extractSongData}
     extractArtistData={extractArtistData}
     top100Albums={top100Albums}
-    top100Songs={(since) => top20Songs(artist,since)}
+    top100Songs={(since) => top20Songs(type,since)}
     top100Artists={top100Artists}
     />
     </>
