@@ -15,6 +15,10 @@ function SongPage() {
   const { type } = useParams();
   const songDetail = songDetails(type)
 
+  const parts = type.split(' - ');
+  parts.pop();
+  const trackName = parts.join(" - ")
+
   let authParams = {
     method: "POST",
     headers: {
@@ -64,9 +68,9 @@ function SongPage() {
     else
      getID();
   }, [accessToken]);
-  console.log(songsTimePlayDetails(type))
   return (
     <div>
+      <h1>{trackName}</h1>
       <Ycard title={'Rank'} value={songDetail.Rank}/>
       <Ycard title={'Artiest Name'} value={songDetail.secondArgument}/>
       <Ycard title={'Plays'} value={songDetail.thirdArgument}/>
@@ -81,7 +85,7 @@ function SongPage() {
    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
    loading="lazy"
  ></iframe>: ""}
-  <Table3 header={["Num","Status","Spent Time","Date"]} data={songsTimePlayDetails(type)} />
+  <Table3 header={["Name","Status","Spent Time","Date"]} data={songsTimePlayDetails(trackName,songDetail.secondArgument)} />
     </div>
   )
 }

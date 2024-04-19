@@ -142,8 +142,9 @@ function getTop100(Obj) {
   
   
   export function extractSongData(songData) {
-    const [trackName, ...rest] = songData.split(' - ');
-    const artistName = rest.pop();
+    const parts = songData.split(' - ');
+    const artistName = parts.pop();
+    const trackName = parts.join(" - ")
   
     const matchingSongs = data.filter(
       (element) =>

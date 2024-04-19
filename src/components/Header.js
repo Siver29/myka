@@ -3,43 +3,54 @@ import Select from 'react-select';
 import 'bootstrap/dist/css/bootstrap.css';
 import './Header.css';
 import data from '../spotify_data.history.json'
-import { getAllSong ,getAllArtiests,getAllPodcasts} from '../functions/MkFunctions'
+import { getAllSong ,getAllArtiests,getAllPodcasts,getUniqueValues} from '../functions/MkFunctions'
 import { useLocation } from 'react-router-dom';
 
 
 
 
-const Header = (props) => {
-
-
+const Header = () => {
+  
   const [options, setOptions] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(null);
   const location = useLocation();
 
-  let searchFun = getAllSong(data)
-  if (location.pathname.slice(0,7) == '/artist'){
-    searchFun = getAllArtiests(data)
-  }else if(location.pathname.slice(0,8) == '/podcast'){
-    searchFun = getAllPodcasts(data)
-  }else{
-    searchFun = getAllSong(data)
-  }
-  
 
-    const addAllSearchValue = () => {
-      if (searchFun) {
-      const newOptions = searchFun.map(song => ({ label: song, value: song }));
-      setOptions(newOptions);
+  const memoizedGetUniqueValues = (() => {
+    let cache = null;
+  
+    return (data) => {
+      if (!cache) {
+        cache = getUniqueValues(data);
       }
+      return cache;
     };
+  })();
+
+
+
+  const addAllSearchValue = () => {
+    const { songs, artists, podcasts } = memoizedGetUniqueValues(data);
+    let newOptions;
+  
+    if (location.pathname.slice(0, 7) === '/artist') {
+      newOptions = artists.map(artist => ({ label: artist, value: artist }));
+    } else if (location.pathname.slice(0, 8) === '/podcast') {
+      newOptions = podcasts.map(podcast => ({ label: podcast, value: podcast }));
+    } else {
+      newOptions = songs.map(song => ({ label: song, value: song }));
+    }
+  
+    setOptions(newOptions);
+  };
+
     useEffect(() => {
+      console.log("sortedData");
       addAllSearchValue();
     }, [location]);
   
 
 
     const handleChange = (selectedOption) => {
-      setSelectedOption(selectedOption);
       if(location.pathname.slice(0,7) == '/artist')
         window.location.href = `/artist/${selectedOption.value}`;
       else if(location.pathname.slice(0,8) == '/podcast')

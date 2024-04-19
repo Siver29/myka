@@ -5,7 +5,8 @@ import {extractSongData,top100Songs,getTop100} from './YazanFunctions.js'
     let allUniqueSongs = []
     data.filter(items => {
       if(items.master_metadata_track_name !== null && !allUniqueSongs.includes(items.master_metadata_track_name)){
-        allUniqueSongs.push(items.master_metadata_track_name)
+        const songName = `${items["master_metadata_track_name"]} - ${items["master_metadata_album_artist_name"]}`;
+        allUniqueSongs.push(songName)
       }
     })
     return allUniqueSongs
@@ -47,9 +48,9 @@ import {extractSongData,top100Songs,getTop100} from './YazanFunctions.js'
   
   
   }
-  export function songsTimePlayDetails (songName){
+  export function songsTimePlayDetails (songName,artistName){
     let songTimePlayDetails = []
-    data.map(song => {if(song.master_metadata_track_name === songName){
+    data.map(song => {if(song.master_metadata_track_name === songName && song.master_metadata_album_artist_name == artistName){
       songTimePlayDetails.push(
       {
         episodeName : song.master_metadata_track_name,
@@ -60,3 +61,33 @@ import {extractSongData,top100Songs,getTop100} from './YazanFunctions.js'
     }})
     return songTimePlayDetails
   }
+
+
+  export function getUniqueValues(data) {
+    const uniqueSongs = new Set();
+    const uniqueArtists = new Set();
+    const uniquePodcasts = new Set();
+  
+    for (const item of data) {
+      if (item.master_metadata_track_name !== null) {
+        const songName = `${item.master_metadata_track_name} - ${item.master_metadata_album_artist_name}`;
+        uniqueSongs.add(songName);
+      }
+  
+      if (item.master_metadata_album_artist_name !== null) {
+        uniqueArtists.add(item.master_metadata_album_artist_name);
+      }
+  
+      if (item.episode_show_name !== null) {
+        uniquePodcasts.add(item.episode_show_name);
+      }
+    }
+  
+    return {
+      songs: [...uniqueSongs],
+      artists: [...uniqueArtists],
+      podcasts: [...uniquePodcasts],
+    };
+  }
+
+  
