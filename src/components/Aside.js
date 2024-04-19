@@ -11,7 +11,7 @@ function Aside() {
           <div>
               <ul>
                   <li><NavLink to='/'> Home</NavLink>    </li>
-                  <li><NavLink to='/artist'>Artiests</NavLink></li>    
+                  <li><NavLink to='/artist/artist'>Artists</NavLink></li>    
                   <li><NavLink to='/podcast'>Podcast</NavLink></li>    
               </ul>
           </div>

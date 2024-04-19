@@ -1,4 +1,4 @@
-import React , { useState , useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Select from 'react-select';
 import 'bootstrap/dist/css/bootstrap.css';
 import './Header.css';
@@ -43,15 +43,15 @@ const Header = (props) => {
         window.location.href = `/song/${selectedOption.value}`;
       };
 
-    const colourStyles = {
-      option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-        return {
-          ...styles,
-          backgroundColor: isFocused ? "#FC244C" : null,
-          color: isFocused ? "white": "black"
-        };
-      }
-    };  
+  const colourStyles = {
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      return {
+        ...styles,
+        backgroundColor: isFocused ? "#FC244C" : null,
+        color: isFocused ? "white" : "black"
+      };
+    }
+  };
   return (
     <header className='container-fluid'>
       <div className='row'>

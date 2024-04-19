@@ -12,7 +12,7 @@ const CLIENT_SECRET = "84f01bc0a1514fb5b1731f5d906c9807";
 
 
 function SongPage() {
-    const [accessToken, setAccessToken] = useState("");
+  const [accessToken, setAccessToken] = useState("");
   const [id, setId] = useState("");
   const { type } = useParams();
   const songDetail = songDetails(type)
@@ -54,7 +54,8 @@ function SongPage() {
     }
     if (accessToken == "")
      getToken();
-    else getID();
+    else
+     getID();
   }, [accessToken]);
   console.log(songsTimePlayDetails(type))
   return (

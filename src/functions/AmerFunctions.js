@@ -12,7 +12,6 @@ function extractPodcastData(podcastName){
        });
      }
     })
-    console.log(resultPodcast);
     return resultPodcast;
    }
    function extractSongData(songName){
@@ -27,6 +26,5 @@ function extractPodcastData(podcastName){
        });
      }
     })
-    console.log(resultSong);
     return resultSong;
    }

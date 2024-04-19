@@ -27,7 +27,7 @@ function App() {
         <Route path="/" element={<Layout/>}>
           <Route index element={<MainPage/>}/>
           <Route path="main" element={<MainPage/>}/>
-          <Route path="artist" element={<ArtistDetailsPage/>}/>
+          <Route path="artist/:type" element={<ArtistDetailsPage/>}/>
           <Route path="podcast" element={<PodcastPage/>}/>
           <Route path="song/:type" element={<SongPage/>}/>
         </Route>
@@ -40,26 +40,3 @@ function App() {
 
 export default App;
 
-//   <iframe
-//   style={{ borderRadius: "12px" }}
-//   src={`https://open.spotify.com/embed/track/?utm_source=generator`}
-//   width="100%"
-//   height="352"
-//   frameBorder="0"
-//   allowFullScreen=""
-//   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-//   loading="lazy"
-// ></iframe>
-// {/* <Circle
-//   labels={["winter", "summer", "Spring", "Autumn"]}
-//   data={highestSeason(data)}
-// /> */}
-// <Top100TableWrapper
-//   changeable={true}
-//   extractAlbumData={extractAlbumData}
-//   extractSongData={extractSongData}
-//   extractArtistData={extractArtistData}
-//   top100Albums={top100Albums}
-//   top100Songs={top100Songs}
-//   top100Artists={top100Artists}
-// />
