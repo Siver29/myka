@@ -3,7 +3,10 @@ import { Outlet } from 'react-router-dom'
 import Aside from './Aside'
 import Header from './Header'
 import { getAllSong ,getAllArtiests,getAllPodcasts} from '../functions/MkFunctions'
+import { useState , useEffect} from 'react'
 import data from '../spotify_data.history.json'
+
+
 function Layout() {
   return (
     <div className="App">
@@ -16,7 +19,7 @@ function Layout() {
             <div className='container-fluid'>
               <div className='row'>
                 <div className='col-12'>
-                  <Header songs={getAllSong(data)}/>
+                  <Header/>
                 </div>
                 <div className='col-12'>
                     <Outlet/>

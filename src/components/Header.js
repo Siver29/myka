@@ -2,28 +2,45 @@ import React , { useState , useEffect} from 'react'
 import Select from 'react-select';
 import 'bootstrap/dist/css/bootstrap.css';
 import './Header.css';
-import { Navigate } from 'react-router-dom';
+import data from '../spotify_data.history.json'
+import { getAllSong ,getAllArtiests,getAllPodcasts} from '../functions/MkFunctions'
+import { useLocation } from 'react-router-dom';
 
 
-  const Header = (props) => {
-    const [options, setOptions] = useState([]);
-    const [selectedOption, setSelectedOption] = useState(null);
 
-    const addAllSongs = () => {
-      if (props.songs) {
-      const newOptions = props.songs.map(song => ({ label: song, value: song }));
+
+const Header = (props) => {
+
+
+  const [options, setOptions] = useState([]);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const location = useLocation();
+
+  let searchFun = getAllSong(data)
+  if (location.pathname == '/artist'){
+    searchFun = getAllArtiests(data)
+  }else if(location.pathname == '/podcast'){
+    searchFun = getAllPodcasts(data)
+  }else{
+    searchFun = getAllSong(data)
+  }
+  
+
+    const addAllSearchValue = () => {
+      if (searchFun) {
+      const newOptions = searchFun.map(song => ({ label: song, value: song }));
       setOptions(newOptions);
       }
     };
     useEffect(() => {
-      addAllSongs();
-    }, []);
+      addAllSearchValue();
+    }, [location]);
   
+
 
       const handleChange = (selectedOption) => {
         setSelectedOption(selectedOption);
-        
-        
+        window.location.href = `/song/${selectedOption.value}`;
       };
 
     const colourStyles = {
@@ -55,8 +72,8 @@ import { Navigate } from 'react-router-dom';
           </div>
           <div className='col-2'>
           <div className='userPhoto'>
-            <a href='./imgs/Rafael.png' target='_blank'>
-              <img src='./imgs/Rafael.png' />
+            <a href='/imgs/Rafael.png' target='_blank'>
+              <img src='/imgs/Rafael.png' />
             </a>
           </div>
           </div>

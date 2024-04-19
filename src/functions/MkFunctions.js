@@ -31,7 +31,7 @@ import {extractSongData,top100Songs,getTop100} from './YazanFunctions.js'
     return allUniquePodcasts
   }
   
-  function songDetails(songName){
+  export function songDetails(songName){
       let Rank = "" 
       let songDetailsArray = extractSongData(songName);
       let top100SongsArray = top100Songs('since the beginning');
@@ -41,11 +41,22 @@ import {extractSongData,top100Songs,getTop100} from './YazanFunctions.js'
           Rank = "UnRanked"
       }
       console.log(Rank)
-      songDetailsArray.Rank =Rank
+      songDetailsArray.Rank = Rank
       
       return songDetailsArray 
   
   
   }
-  let ddd= songDetails('7empest')
-  console.log(ddd)
+  export function songsTimePlayDetails (songName){
+    let songTimePlayDetails = []
+    data.map(song => {if(song.master_metadata_track_name === songName){
+      songTimePlayDetails.push(
+      {
+        episodeName : song.master_metadata_track_name,
+        episodeStatus : song.reason_end,
+        played : song.ms_played,
+        date : song.ts,
+      })
+    }})
+    return songTimePlayDetails
+  }

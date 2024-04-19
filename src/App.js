@@ -29,7 +29,7 @@ function App() {
           <Route path="main" element={<MainPage/>}/>
           <Route path="artist" element={<ArtistDetailsPage/>}/>
           <Route path="podcast" element={<PodcastPage/>}/>
-          <Route path="song" element={<SongPage/>}/>
+          <Route path="song/:type" element={<SongPage/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

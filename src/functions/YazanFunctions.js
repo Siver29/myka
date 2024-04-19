@@ -14,8 +14,6 @@ function getTop100(Obj) {
   }
   
   export function top100Artists(since){
-  console.log(top100Artists("since the beginning"))
-  export function top100Artists(since){
     let obj = {};
     let dateSince;
     if(since == "since the beginning"){
