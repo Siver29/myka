@@ -53,8 +53,10 @@ function getTop100(Obj) {
     let dateSince;
     if (since == "since the beginning") {
       data.forEach(song => {
-        const key = `${song["master_metadata_track_name"]} - ${song["master_metadata_album_artist_name"]}`;
-        obj[key] = (obj[key] || 0) + song.ms_played;
+        if(song["master_metadata_track_name"]){
+          const key = `${song["master_metadata_track_name"]} - ${song["master_metadata_album_artist_name"]}`;
+          obj[key] = (obj[key] || 0) + song.ms_played;
+        }
       });
       return getTop100(obj);
     } else if (since == "last year") {
@@ -69,8 +71,10 @@ function getTop100(Obj) {
     }
     let filteredData = data.filter(item => new Date(item.ts) >= dateSince);
     filteredData.forEach(song => {
-      const key = `${song["master_metadata_track_name"]} - ${song["master_metadata_album_artist_name"]}`;
-      obj[key] = (obj[key] || 0) + song.ms_played;
+      if(song["master_metadata_track_name"]){
+        const key = `${song["master_metadata_track_name"]} - ${song["master_metadata_album_artist_name"]}`;
+        obj[key] = (obj[key] || 0) + song.ms_played;
+      }
     });
     return getTop100(obj);
   }
