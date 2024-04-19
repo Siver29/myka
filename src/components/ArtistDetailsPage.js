@@ -21,7 +21,6 @@ if(type == "artist")
 )
 
   
-  
   return (
     <>
       <h1>{type}</h1>
