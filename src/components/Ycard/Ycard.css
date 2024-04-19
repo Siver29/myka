@@ -7,20 +7,24 @@
 .cardbox{
     width: 200px;
     /* border: 1px black solid; */
-    padding:15px;
+    padding:10px;
     margin:10px 20px;
-    background-image: linear-gradient(to right, #0CF0DE , #FC244C);
     border-radius: 10px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-}
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 5px 0px rgba(87, 87, 87, 0.75);
+    border: 1px solid black;
+}   
 .PropsTitle{
-    padding-bottom: 15px;
+    color: black;
     font-size: 14px;
+    font-weight: bold;
 }
 .PropsValue{
-    padding-top: 15px;
+    color: black;
     padding-right: 15px;
     font-size: 18px;
 }
