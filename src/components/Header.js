@@ -17,9 +17,9 @@ const Header = (props) => {
   const location = useLocation();
 
   let searchFun = getAllSong(data)
-  if (location.pathname == '/artist'){
+  if (location.pathname.slice(0,7) == '/artist'){
     searchFun = getAllArtiests(data)
-  }else if(location.pathname == '/podcast'){
+  }else if(location.pathname.slice(0,8) == '/podcast'){
     searchFun = getAllPodcasts(data)
   }else{
     searchFun = getAllSong(data)
