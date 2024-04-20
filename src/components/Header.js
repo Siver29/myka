@@ -1,40 +1,73 @@
-import React , { useState , useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Select from 'react-select';
 import 'bootstrap/dist/css/bootstrap.css';
 import './Header.css';
-import { Navigate } from 'react-router-dom';
+import data from '../spotify_data.history.json'
+import { getAllSong ,getAllArtiests,getAllPodcasts,getUniqueValues} from '../functions/MkFunctions'
+import { useLocation } from 'react-router-dom';
 
 
-  const Header = (props) => {
-    const [options, setOptions] = useState([]);
-    const [selectedOption, setSelectedOption] = useState(null);
 
-    const addAllSongs = () => {
-      if (props.songs) {
-      const newOptions = props.songs.map(song => ({ label: song, value: song }));
-      setOptions(newOptions);
+
+const Header = () => {
+  
+  const [options, setOptions] = useState([]);
+  const location = useLocation();
+
+
+  const memoizedGetUniqueValues = (() => {
+    let cache = null;
+  
+    return (data) => {
+      if (!cache) {
+        cache = getUniqueValues(data);
       }
+      return cache;
     };
+  })();
+
+
+
+  const addAllSearchValue = () => {
+    const { songs, artists, podcasts } = memoizedGetUniqueValues(data);
+    let newOptions;
+  
+    if (location.pathname.slice(0, 7) === '/artist') {
+      newOptions = artists.map(artist => ({ label: artist, value: artist }));
+    } else if (location.pathname.slice(0, 8) === '/podcast') {
+      newOptions = podcasts.map(podcast => ({ label: podcast, value: podcast }));
+    } else {
+      newOptions = songs.map(song => ({ label: song, value: song }));
+    }
+  
+    setOptions(newOptions);
+  };
+
     useEffect(() => {
-      addAllSongs();
-    }, []);
+      console.log("sortedData");
+      addAllSearchValue();
+    }, [location]);
   
 
-      const handleChange = (selectedOption) => {
-        setSelectedOption(selectedOption);
-        
-        
-      };
 
-    const colourStyles = {
-      option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-        return {
-          ...styles,
-          backgroundColor: isFocused ? "#FC244C" : null,
-          color: isFocused ? "white": "black"
-        };
-      }
-    };  
+    const handleChange = (selectedOption) => {
+      if(location.pathname.slice(0,7) == '/artist')
+        window.location.href = `/artist/${selectedOption.value}`;
+      else if(location.pathname.slice(0,8) == '/podcast')
+        window.location.href = `/podcast/${selectedOption.value}`;
+      else
+        window.location.href = `/song/${selectedOption.value}`;
+    };
+
+  const colourStyles = {
+    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+      return {
+        ...styles,
+        backgroundColor: isFocused ? "#FC244C" : null,
+        color: isFocused ? "white" : "black"
+      };
+    }
+  };
   return (
     <header className='container-fluid'>
       <div className='row'>
@@ -55,8 +88,8 @@ import { Navigate } from 'react-router-dom';
           </div>
           <div className='col-2'>
           <div className='userPhoto'>
-            <a href='./imgs/Rafael.png' target='_blank'>
-              <img src='./imgs/Rafael.png' />
+            <a href='/imgs/Rafael.png' target='_blank'>
+              <img src='/imgs/Rafael.png' />
             </a>
           </div>
           </div>

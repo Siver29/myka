@@ -1,0 +1,9 @@
+
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cardsContainer{
+    width: 1200px
+}

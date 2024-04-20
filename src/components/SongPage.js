@@ -1,13 +1,23 @@
+import {songDetails,songsTimePlayDetails} from '../functions/MkFunctions.js'
 import React from 'react'
 import { useState,useEffect } from 'react';
-import data from "../spotify_data.history.json"
+import { useParams } from 'react-router-dom';
+import Ycard from './Ycard/Ycard';
+import Table3 from './Table3/Table3';
 
 const CLIENT_ID = "5f76e87494884cb1ba1da0fadf1422e4";
 const CLIENT_SECRET = "84f01bc0a1514fb5b1731f5d906c9807";
 
+
 function SongPage() {
-    const [accessToken, setAccessToken] = useState("");
+  const [accessToken, setAccessToken] = useState("");
   const [id, setId] = useState("");
+  const { type } = useParams();
+  const songDetail = songDetails(type)
+
+  const parts = type.split(' - ');
+  parts.pop();
+  const trackName = parts.join(" - ")
 
   let authParams = {
     method: "POST",
@@ -29,27 +39,43 @@ function SongPage() {
   };
 
   useEffect(() => {
-    function getToken() {
-      fetch("https://accounts.spotify.com/api/token", authParams)
-        .then((res) => res.json())
-        .then((data) => setAccessToken(data.access_token));
-      console.log(data);
+    async function getToken() {
+      try {
+        let response = await fetch("https://accounts.spotify.com/api/token", authParams)
+        response = await response.json()
+        setAccessToken(response.access_token)
+      } catch (error) {
+        setAccessToken("couldn't get token");
+        console.log(error);
+      }
     }
-    function getID() {
-      fetch(
-        "https://api.spotify.com/v1/search?q=7empst&type=track",
-        reqParams
-      )
-        .then((res) => res.json())
-        .then((data) => setId(data.tracks.items[0].id));
+    async function getID() {
+      try {
+        let response = await fetch(
+          `https://api.spotify.com/v1/search?q=${type}&type=track`,
+          reqParams
+        )
+        response = await response.json();
+        setId(response.tracks.items[0].id)
+      } catch (error) {
+        
+      }
     }
     if (accessToken == "")
      getToken();
-    else getID();
+    else if(accessToken == "couldn't get token")
+      return
+    else
+     getID();
   }, [accessToken]);
   return (
     <div>
-      <iframe
+      <h1>{trackName}</h1>
+      <Ycard title={'Rank'} value={songDetail.Rank}/>
+      <Ycard title={'Artiest Name'} value={songDetail.secondArgument}/>
+      <Ycard title={'Plays'} value={songDetail.thirdArgument}/>
+      <Ycard title={'Play Time'} value={songDetail.fourthArgument}/>
+      {accessToken !== "couldn't get token" ? <iframe
    style={{ borderRadius: "12px" }}
    src={`https://open.spotify.com/embed/track/${id}?utm_source=generator`}
    width="100%"
@@ -58,7 +84,8 @@ function SongPage() {
    allowFullScreen=""
    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
    loading="lazy"
- ></iframe>
+ ></iframe>: ""}
+  <Table3 header={["Name","Status","Spent Time","Date"]} data={songsTimePlayDetails(trackName,songDetail.secondArgument)} />
     </div>
   )
 }
