@@ -30,11 +30,12 @@ function App() {
           <Route path="artist/:type" element={<ArtistDetailsPage/>}/>
           <Route path="podcast" element={<PodcastPage/>}/>
           <Route path="song/:type" element={<SongPage/>}/>
+          <Route path="artist" element={<ArtistDetailsPage/>}/>
+          <Route path="podcast/:type" element={<PodcastPage/>}/>
+          <Route path="song" element={<SongPage/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
-    
-    
   );
 }
 

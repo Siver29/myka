@@ -4,7 +4,7 @@ function getTop100(Obj) {
     const dataArray = Object.entries(Obj);
   
     dataArray.sort((a, b) => b[1] - a[1]);
-  
+
     const top100 = dataArray.slice(0, 100);
   
   
