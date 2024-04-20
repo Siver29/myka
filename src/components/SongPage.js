@@ -58,7 +58,8 @@ function SongPage() {
         response = await response.json();
         setId(response.tracks.items[0].id)
       } catch (error) {
-        
+        setAccessToken("couldn't get token");
+        console.log(error);
       }
     }
     if (accessToken == "")
@@ -71,10 +72,10 @@ function SongPage() {
   return (
     <div>
       <h1>{trackName}</h1>
-      <Ycard title={'Rank'} value={songDetail.Rank}/>
-      <Ycard title={'Artiest Name'} value={songDetail.secondArgument}/>
-      <Ycard title={'Plays'} value={songDetail.thirdArgument}/>
-      <Ycard title={'Play Time'} value={songDetail.fourthArgument}/>
+      <Ycard title={'Rank:'} value={`#${songDetail.Rank}`}/>
+      <Ycard title={'Artiest:'} value={songDetail.secondArgument}/>
+      <Ycard title={'Plays:'} value={songDetail.thirdArgument}/>
+      <Ycard title={'Play Time:'} value={songDetail.fourthArgument}/>
       {accessToken !== "couldn't get token" ? <iframe
    style={{ borderRadius: "12px" }}
    src={`https://open.spotify.com/embed/track/${id}?utm_source=generator`}

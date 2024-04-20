@@ -30,25 +30,30 @@ div ul{
     line-height: 100px;
     color: white;
 }
-li a{
+.aside li a{
     color: white;
-    text-decoration: none;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
-}
-.active{
-    /* background-color: #FC244C; */
-    /* border-radius: 10px; */
-    border-bottom: 2px solid #FC244C;
-
-}
-
-li a{
     text-align: center;
     display: block;
     width: 100%;
     color: white ;
     text-decoration: none ;
     margin:10px 0;
+    box-sizing: border-box;
+    text-align: left;
+    padding-left: 20px;
+    
 }
+.aside li{
+}
+.aside .active{
+    /* background-color: #FC244C; */
+    /* border-radius: 10px; */
+    border-left: 2px solid #FC244C;
+    margin-left: 40px;
+    
+
+}
+

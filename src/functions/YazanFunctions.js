@@ -223,8 +223,13 @@ function getTop100(Obj) {
       if(song.master_metadata_album_artist_name == artist)
         numberOfPlaysForArtist++
     })
+    let numberOfSongs=0;
+    data.map(song => {
+      if(song.master_metadata_track_name !== null)
+        numberOfSongs++;
+    })
 
-    return [numberOfPlaysForArtist,data.length-numberOfPlaysForArtist]
+    return [numberOfPlaysForArtist,numberOfSongs-numberOfPlaysForArtist]
 
   }
 
