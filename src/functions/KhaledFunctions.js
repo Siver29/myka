@@ -105,7 +105,7 @@ import data from '../spotify_data.history.json'
     return [(getTotalPlays(data) - artistPlayes), artistPlayes]
   }
   
-  function highestArtistSeason(artistName, data) {
+  function highestArtistSeason(artistName) {
   
     const seasons = {
       winter: 0,

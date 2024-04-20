@@ -4,10 +4,14 @@
     box-sizing: border-box;
 }
 .tableRow{
-        background-image: linear-gradient(to right, #0CF0DE , #FC244C);
-    color: white !important;
+    background-color: rgb(147, 247, 235) !important;
 }
 .Table3cs{
-    background-image: linear-gradient(to right, #0CF0DE , #FC244C);
-    color: white !important;
+    background-color: rgb(216, 251, 250) !important;
+}
+.borderNone{
+    border: none;
+}
+.padding2px{
+    padding: 2px;
 }

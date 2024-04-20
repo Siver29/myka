@@ -28,13 +28,11 @@ function App() {
           <Route index element={<MainPage/>}/>
           <Route path="main" element={<MainPage/>}/>
           <Route path="artist" element={<ArtistDetailsPage/>}/>
-          <Route path="podcast" element={<PodcastPage/>}/>
+          <Route path="podcast/:type" element={<PodcastPage/>}/>
           <Route path="song" element={<SongPage/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
-    
-    
   );
 }
 
