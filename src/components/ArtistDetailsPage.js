@@ -25,10 +25,10 @@ if(type == "artist")
     <>
       <h1>{type}</h1>
       <div className='Cards'>
+        <Ycard title="Rank" value={`#${artistRank(type)}`}/>
         <Ycard title="Plays" value={extractArtistData(type).secondArgument}/>
         <Ycard title="Songs" value={extractArtistData(type).thirdArgument}/>
         <Ycard title="Time Listened" value={extractArtistData(type).fourthArgument}/>
-        <Ycard title="Rank" value={`#${artistRank(type)}`}/>
       </div>
       <div className='Circles'>
         <Circle

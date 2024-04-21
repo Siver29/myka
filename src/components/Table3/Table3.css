@@ -3,11 +3,11 @@
     margin: 0;
     box-sizing: border-box;
 }
-.tableRow{
-    background-color: rgb(147, 247, 235) !important;
+thead tr .tableRow{
+    background-color: rgb(147, 247, 235) ;
 }
-.Table3cs{
-    background-color: rgb(216, 251, 250) !important;
+thead tr .Table3cs{
+    background-color: rgb(216, 251, 250) ;
 }
 .borderNone{
     border: none;

@@ -17,15 +17,15 @@ function Table3(props) {
             <tbody>
                 {
                     props.data.map((item,index) => (
-                    <>
-                        <tr className="borderNone">
+                    
+                        <tr className="borderNone" key={item.date}>
                             <td className="borderNone">#{index+1}</td>
                             <td className="borderNone">{item.episodeName}</td>
                             <td className="borderNone">{item.episodeStatus}</td>
                             <td className="borderNone">{item.played}</td>
                             <td className="borderNone">{item.date}</td>
                         </tr>
-                    </>
+                    
                 ))}
             </tbody>
         </Table>

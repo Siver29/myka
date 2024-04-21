@@ -1,48 +1,17 @@
-import data from '../spotify_data.history.json' 
-
-function extractPodcastData(podcastName){
-    let resultPodcast= []
-    data.map(song =>{
-     if(song.episode_show_name ==podcastName){
-       resultPodcast.push({
-         episodeName :song.episode_name,
-         episodeStatus:song.reason_end == "trackdone"? "finished": "not finished",
-         played:song.ms_played,
-         date:song.ts
-       });
-     }
-    })
-    return resultPodcast;
-   }
-   function extractSongData(songName){
-    let resultSong= []
-    data.map(song =>{
-     if(song.master_metadata_track_name ==songName){
-       resultSong.push({
-         episodeName :song.master_metadata_album_album_name,
-         episodeStatus:song.reason_end == "trackdone"? "finished": "not finished",
-         played:song.ms_played,
-         date:song.ts
-       });
-     }
-    })
-    return resultSong;
-   }
 import data from "../spotify_data.history.json";
 export function numberOfPodcast(podcastName) {
   let numberPodcast =[];
   data.map((song) => {
-    if (song.episode_show_name == podcastName && !numberPodcast.includes(song.episode_show_name)) {
+    if (song.episode_show_name && song.episode_show_name.trimEnd() == podcastName && !numberPodcast.includes(song.episode_show_name)) {
       numberPodcast.push(song.episode_name);
     }
   });
-  console.log(numberPodcast.length);
   return numberPodcast.length;
 }
 export function periodtimeOfPodcast(podcastName){
   let periodtime=0
   data.map((song) => {
-    if (song.episode_show_name == podcastName ) {
+    if (song.episode_show_name && song.episode_show_name.trimEnd() == podcastName ) {
       periodtime+=(song.ms_played/1000);
     }
   });
@@ -50,17 +19,16 @@ export function periodtimeOfPodcast(podcastName){
 }
 export function extractPodcastData(podcastName) {
   let resultPodcast = [];
-  data.map((song) => {
-    if (song.episode_show_name == podcastName) {
+  data.map(song => {
+    if (song.episode_show_name && song.episode_show_name.trimEnd() == podcastName) {
       resultPodcast.push({
         episodeName: song.episode_name,
         episodeStatus:song.reason_end == "trackdone" ? "finished" : "not finished",
-        played: Math.trunc(song.ms_played/1000)+'  [s]',
-        date: song.ts.slice(0,19),
+        played: Math.trunc(song.ms_played/1000)+'  s',
+        date: song.ts.slice(0,10)+ " "+song.ts.slice(12,19),
       });
     }
   });
-  console.log(resultPodcast);
   return resultPodcast;
 }
 export function extractSongData(songName) {
@@ -72,11 +40,10 @@ export function extractSongData(songName) {
         episodeStatus:
           song.reason_end == "trackdone" ? "finished" : "not finished",
         played: song.ms_played,
-        date: song.ts,
+        date: song.ts.slice(0,10)+ " "+song.ts.slice(12,19),
       });
     }
   });
-  console.log(resultSong);
   return resultSong;
 }
 export function highestPodcastSeason(podcastName) {
@@ -89,7 +56,7 @@ export function highestPodcastSeason(podcastName) {
   }
 
   data.map(song => {
-    if (song.episode_show_name == podcastName) {
+    if (song.episode_show_name && song.episode_show_name.trimEnd() == podcastName) {
       if (song.ts.slice(5, 7) == "12" || song.ts.slice(5, 7) == "01" || song.ts.slice(5, 7) == "02") {
         seasons["winter"] += song.ms_played
       } else if (song.ts.slice(5, 7) == "03" || song.ts.slice(5, 7) == "04" || song.ts.slice(5, 7) == "05") {

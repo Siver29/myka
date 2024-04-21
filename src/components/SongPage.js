@@ -4,6 +4,7 @@ import { useState,useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Ycard from './Ycard/Ycard';
 import Table3 from './Table3/Table3';
+import './SongPage.css'
 
 const CLIENT_ID = "5f76e87494884cb1ba1da0fadf1422e4";
 const CLIENT_SECRET = "84f01bc0a1514fb5b1731f5d906c9807";
@@ -11,12 +12,12 @@ const CLIENT_SECRET = "84f01bc0a1514fb5b1731f5d906c9807";
 
 function SongPage() {
   const [accessToken, setAccessToken] = useState("");
-  const [id, setId] = useState("");
+  const [id, setId] = useState("don't have id");
   const { type } = useParams();
   const songDetail = songDetails(type)
 
   const parts = type.split(' - ');
-  parts.pop();
+  const artistName = parts.pop();
   const trackName = parts.join(" - ")
 
   let authParams = {
@@ -56,7 +57,12 @@ function SongPage() {
           reqParams
         )
         response = await response.json();
-        setId(response.tracks.items[0].id)
+        response.tracks.items.forEach(song => {
+          if(song.name == trackName && song.artists[0].name== artistName){
+            setId(song.id)
+            return
+          }
+        });
       } catch (error) {
         setAccessToken("couldn't get token");
         console.log(error);
@@ -71,12 +77,12 @@ function SongPage() {
   }, [accessToken]);
   return (
     <div>
-      <h1>{trackName}</h1>
+      <h1>{type}</h1>
       <Ycard title={'Rank:'} value={`#${songDetail.Rank}`}/>
-      <Ycard title={'Artiest:'} value={songDetail.secondArgument}/>
+      {/* <Ycard title={'Artiest:'} value={songDetail.secondArgument}/> */}
       <Ycard title={'Plays:'} value={songDetail.thirdArgument}/>
       <Ycard title={'Play Time:'} value={songDetail.fourthArgument}/>
-      {accessToken !== "couldn't get token" ? <iframe
+      {accessToken !== "couldn't get token" || id!=="don't have id"? <iframe
    style={{ borderRadius: "12px" }}
    src={`https://open.spotify.com/embed/track/${id}?utm_source=generator`}
    width="100%"

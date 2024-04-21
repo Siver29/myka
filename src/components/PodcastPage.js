@@ -12,19 +12,18 @@ function PodcastPage() {
  
   if(type=='podcast'){
     return (
-    <div>
-      <p>Enter correct Podcast</p>
-    </div>
+      <div className='notSearched'>Search for a Podcast</div>
     )
   }
   return (
     <div>
       <div>
+        <h1>{type}</h1>
         <div className='displayFlex margin'>
-          <Ycard value={numberOfPodcast(type)} title="Number of Podcast:"/>
-          <Ycard value={periodtimeOfPodcast(type)} title="Time of Podcast:"/>
+          <Ycard value={numberOfPodcast(type)} title="Number of Episodes:"/>
+          <Ycard value={periodtimeOfPodcast(type)} title="Time Listened:"/>
+          <Circle labels={["Winter", "Summer", "Spring", "Autumn"]} data={Object.values(highestPodcastSeason(type))}/>
         </div>
-        <Circle labels={["Winter", "Summer", "Spring", "Autumn"]} data={Object.values(highestPodcastSeason(type))}/>
       <Table3 header={["Episode Title","status","spent Time","date"]} data={extractPodcastData(type)} />
       </div>
     </div>

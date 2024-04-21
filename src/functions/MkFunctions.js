@@ -41,7 +41,6 @@ import {extractSongData,top100Songs,getTop100} from './YazanFunctions.js'
       }else{
           Rank = "UnRanked"
       }
-      console.log(Rank)
       songDetailsArray.Rank = Rank
       
       return songDetailsArray 
@@ -54,9 +53,9 @@ import {extractSongData,top100Songs,getTop100} from './YazanFunctions.js'
       songTimePlayDetails.push(
       {
         episodeName : song.master_metadata_track_name,
-        episodeStatus : song.reason_end,
-        played : song.ms_played,
-        date : song.ts,
+        episodeStatus :song.reason_end == "trackdone" ? "finished" : "not finished",
+        played :  Math.trunc(song.ms_played/1000)+'s',
+        date : song.ts.slice(0,10)+ " "+song.ts.slice(12,19),
       })
     }})
     return songTimePlayDetails

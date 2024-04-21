@@ -106,8 +106,7 @@ import data from '../spotify_data.history.json'
   }
   
   export function highestArtistSeason(artistName) {
-  function highestArtistSeason(artistName) {
-  
+
     const seasons = {
       winter: 0,
       summer: 0,
@@ -128,7 +127,9 @@ import data from '../spotify_data.history.json'
         }
       }
     })
-  
     return seasons
-  
   }
+
+
+
+  

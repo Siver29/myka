@@ -12,6 +12,7 @@ import { useLocation } from 'react-router-dom';
 const Header = () => {
   
   const [options, setOptions] = useState([]);
+  const [type, setType] = useState([]);
   const location = useLocation();
 
 
@@ -33,10 +34,13 @@ const Header = () => {
     let newOptions;
   
     if (location.pathname.slice(0, 7) === '/artist') {
+      setType("artist")
       newOptions = artists.map(artist => ({ label: artist, value: artist }));
     } else if (location.pathname.slice(0, 8) === '/podcast') {
+      setType("podcast")
       newOptions = podcasts.map(podcast => ({ label: podcast, value: podcast }));
     } else {
+      setType("song")
       newOptions = songs.map(song => ({ label: song, value: song }));
     }
   
@@ -44,7 +48,6 @@ const Header = () => {
   };
 
     useEffect(() => {
-      console.log("sortedData");
       addAllSearchValue();
     }, [location]);
   
@@ -73,7 +76,7 @@ const Header = () => {
       <div className='row'>
       <div className='col-6'>
         <Select 
-        placeholder="search for song"
+        placeholder={`search for ${type}`}
         options={options}
         onChange={handleChange}
         className='select'
