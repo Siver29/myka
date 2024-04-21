@@ -6,10 +6,11 @@
 }
 .cardd{
     display: inline-flex;
+    transition: 0.5s;
 }
 .cardd:hover{
     transform: scale(1.09);
-    transition: 0.5s;
+    
 }
 .cardd:hover .cardbox{
     transition: 0.5s;

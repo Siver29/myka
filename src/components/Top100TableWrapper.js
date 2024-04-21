@@ -33,7 +33,7 @@ function DropdownUI(props) {
     }
   return (
 
-    <>
+    <div className='tableContainer'>
     <div className='dropRow'>
     {props.changeable ? <Dropdown onSelect={(active)=>handleSelect(active,since)} as={ButtonGroup} data-bs-theme="dark">
         <Dropdown.Toggle  id="dropdown-custom-1">Top 100</Dropdown.Toggle>
@@ -57,7 +57,7 @@ function DropdownUI(props) {
       </Dropdown>{' '}
       </div>
       <Top100Table header={header} data={data}/>
-    </>
+    </div>
   );
 }
 
