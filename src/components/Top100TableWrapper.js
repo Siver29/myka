@@ -5,14 +5,13 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './Top100TableWrapper.css'
 import Top100Table from './Top100Table';
 
-function DropdownUI(props) {
-    const [header,setHeader] = useState(["Artiest name","Total plays","Total songs","Time played"])
-    const[data,setData] = useState(props.top100Artists("since the beginning").map(artist => props.extractArtistData(artist)))
-    const [activeKey, setActiveKey] = useState('Artist');
+function Top100TableWrapper(props) {
+    const [header,setHeader] = useState(["Song name","Artiest name","Total plays","Time played"])
+    const[data,setData] = useState(props.top100Songs("since the beginning").map(song => props.extractSongData(song)))
+    const [activeKey, setActiveKey] = useState('Song');
     const [since, setSince] = useState("since the beginning");
     function handleSelect(eventKey,since){
-      console.log("since");
-      console.log(eventKey);
+
       if(eventKey === "Song"){
         setHeader(["Song name","Artiest name","Total plays","Time played"])
         setData(props.top100Songs(since).map(song => props.extractSongData(song)))
@@ -65,4 +64,4 @@ function DropdownUI(props) {
 
 
 
-export default DropdownUI
+export default Top100TableWrapper

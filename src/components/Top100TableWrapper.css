@@ -11,6 +11,11 @@
 #dropdown-custom-1{
     margin-left: 10px;
 }
-/* .tableContainer{
-    position: relative;
-} */
+.dropdown-menu a{
+    font-size: 15px;
+}
+thead{
+    font-size: 15px;
+    position: sticky;
+    top: 0;
+}

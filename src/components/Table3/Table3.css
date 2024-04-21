@@ -3,11 +3,15 @@
     margin: 0;
     box-sizing: border-box;
 }
-.tableRow{
-        background-image: linear-gradient(to right, #0CF0DE , #FC244C);
-    color: white !important;
+thead tr .tableRow{
+    background-color: rgb(147, 247, 235) ;
 }
-.Table3cs{
-    background-image: linear-gradient(to right, #0CF0DE , #FC244C);
-    color: white !important;
+thead tr .Table3cs{
+    background-color: rgb(216, 251, 250) ;
+}
+.borderNone{
+    border: none;
+}
+.padding2px{
+    padding: 2px;
 }

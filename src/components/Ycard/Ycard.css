@@ -8,16 +8,7 @@
     display: inline-flex;
     transition: 0.5s;
 }
-.cardd:hover{
-    transform: scale(1.09);
-    
-}
-.cardd:hover .cardbox{
-    transition: 0.5s;
-    box-shadow: 
-    -10px -10px 15px rgba(241, 183, 183, 0.355),
-    10px 10px 15px rgba(86, 42, 42, 0.12);
-}
+
 .cardbox{
     width: 200px;
     border-radius: 10px;
@@ -30,6 +21,7 @@
     box-shadow: 
     -10px -10px 15px rgba(205, 205, 205, 0.355),
     10px 10px 15px rgba(70, 70, 70, 0.12);
+    overflow: hidden;
     
 }
 .PropsTitle{
