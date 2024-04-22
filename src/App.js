@@ -20,7 +20,7 @@ import ArtistDetailsPage from "./components/ArtistDetailsPage.js";
 
 
 function App() {
-  
+
   return (
     <BrowserRouter>
       <Routes>
